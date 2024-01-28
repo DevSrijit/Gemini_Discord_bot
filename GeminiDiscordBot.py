@@ -88,20 +88,20 @@ async def on_message(message):
 
 # ----------------------------------------- Slash Commands -------------------------------------------------
 
-@bot.slash(name="reset", description="Reset chat history")
+@bot.slash_command(name="reset", description="Reset chat history")
 async def reset(ctx):
     # Reset chat history for the user
     if ctx.author.id in message_history:
         del message_history[ctx.author.id]
     await ctx.send("🤖 History Reset for user: " + str(ctx.author.name))
 
-@bot.slash(name="history", description="View chat history")
+@bot.slash_command(name="history", description="View chat history")
 async def history(ctx):
     # Get and send chat history for the user
     history_text = get_formatted_message_history(ctx.author.id)
     await ctx.send(history_text)
 
-@bot.slash(name="generate", description="Generate response")
+@bot.slash_command(name="generate", description="Generate response")
 async def generate(ctx, *, text: str):
     # Generate response and send it
     response_text = await generate_response_with_text(text)
